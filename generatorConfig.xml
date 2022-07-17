@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 通用mapper所在目录 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.baiguo.my.mapper.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/neighbour?serverTimezone=Asia/Shanghai&amp;useSSL=false"
+                        userId="root"
+                        password="abc123456">
+        </jdbcConnection>
+
+        <!-- 对应生成的pojo所在包 -->
+        <javaModelGenerator targetPackage="com.baiguo.pojo" targetProject="src/main/java"/>
+
+        <!-- 对应生成的mapper所在目录 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- 配置mapper对应的java映射 -->
+        <javaClientGenerator targetPackage="com.baiguo.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <!-- 数据库表 -->
+        <table tableName="category" domainObjectName="CategoryDO" mapperName="CategoryMapper"></table>
+        <table tableName="product" domainObjectName="ProductDO" mapperName="ProductMapper"></table>
+        <table tableName="user" domainObjectName="UserDO" mapperName="UserMapper"></table>
+
+
+    </context>
+</generatorConfiguration>
